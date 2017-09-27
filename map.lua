@@ -12,6 +12,7 @@
 --      tileset is 0 based - if in .map file there is tile 0 it reads {(0,0), (size,size)} rectangle
 --      map is 1 based - if I put player on 0,0 there will be an error
 --      flags work the same as tileset, start from flag 0
+--
 
 Map = {
   width = nil,
@@ -47,7 +48,7 @@ function Map.load(map_name)
   end
 end
 
-function Map.draw(tx, ty)
+function Map.draw(tx, ty, scale)
 
   tx = tx or 0
   ty = ty or 0
@@ -59,7 +60,7 @@ function Map.draw(tx, ty)
   end
 
   for _, layer in ipairs(Map.layers) do
-    love.graphics.draw(layer.canvas)
+    love.graphics.draw(layer.canvas, tx, ty, 0, scale, scale)
   end
 end
 
