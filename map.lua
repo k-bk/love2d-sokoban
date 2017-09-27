@@ -54,7 +54,7 @@ function Map.draw(tx, ty, scale)
   ty = ty or 0
 
   for _, layer in ipairs(Map.layers) do
-    if layer.tag ~= "static" then
+    if layer.tag == "dynamic" then
       Map.updateCanvas(layer)
     end
   end
@@ -82,7 +82,7 @@ function Map.readLayers(file)
       table.insert(layer, {})
       row = layer[#layer]
 
-      -- for every line of grid insert space separated numbers
+      -- for every line of grid insert to a table space separated numbers
       for value in string.gmatch(line, "%d+") do
         table.insert(row, tonumber(value))
       end
@@ -128,7 +128,7 @@ function Map.checkFlag(x, y, layer)
   
   local maxi = 0
   for _, layer in ipairs(Map.layers) do
-    maxi = math.max(maxi, Map.flags[layer[x][y]])
+    maxi = math.max(maxi, Map.flags[layer[y][x]])
   end
   return maxi
 end
