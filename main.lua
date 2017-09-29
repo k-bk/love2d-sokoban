@@ -20,7 +20,7 @@ function love.keypressed (key)
     end
   end
 
-  player.keypressed(key)
+  player.keypressed (key)
 end
 
 
