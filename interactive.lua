@@ -9,7 +9,7 @@ end
 
 function I.draw ()
   for entity in pairs(I.entities) do
-    entity:draw(dt)
+    entity:draw()
   end
 end
 

@@ -1,4 +1,5 @@
 _tileSize = 64
+_scale = 0.5
 map = require("map")
 player = require("player")
 interactive = require("interactive") 
@@ -27,8 +28,7 @@ end
 
 
 function love.draw ()
-  local scale = 0.5
-  map.draw(0, 0, scale)
-  interactive.draw(scale)
-  player.draw(scale)
+  map.draw(0, 0)
+  interactive.draw()
+  player.draw()
 end
