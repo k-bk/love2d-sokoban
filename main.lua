@@ -1,6 +1,7 @@
 _tileSize = 64
 map = require("map")
 player = require("player")
+interactive = require("interactive") 
 
 function love.load ()
   map.load("level_2")
@@ -8,7 +9,8 @@ function love.load ()
 end
 
 function love.update (dt)
-
+  interactive.update(dt)
+  player.update(dt)
 end
 
 function love.keypressed (key)
@@ -25,6 +27,8 @@ end
 
 
 function love.draw ()
-  map.draw(0, 0, 0.5)
-  player.draw(0.5)
+  local scale = 0.5
+  map.draw(0, 0, scale)
+  interactive.draw(scale)
+  player.draw(scale)
 end

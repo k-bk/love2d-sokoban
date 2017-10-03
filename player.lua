@@ -7,6 +7,10 @@ function P.load(x, y)
   P.layer = 3
 end
 
+function P.update(dt)
+-- nothin's here yet
+end
+
 function P.keypressed(key)
 
   local movex,movey = 0,0
