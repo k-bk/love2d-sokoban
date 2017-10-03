@@ -26,6 +26,12 @@ Map = {
 function Map.load(map_name)
 
   Map.name = map_name
+
+  -- load event layer from map_name.lua file
+  interactive.entities = {}
+  dofile("maps/" .. map_name .. ".lua")
+
+  -- start reading from file
   io.input("maps/" .. map_name .. ".map")
   local file = io.read("*a")
 
@@ -48,7 +54,7 @@ function Map.load(map_name)
   end
 end
 
-function Map.draw(tx, ty, scale)
+function Map.draw(tx, ty)
 
   tx = tx or 0
   ty = ty or 0
@@ -60,7 +66,7 @@ function Map.draw(tx, ty, scale)
   end
 
   for _, layer in ipairs(Map.layers) do
-    love.graphics.draw(layer.canvas, tx, ty, 0, scale, scale)
+    love.graphics.draw(layer.canvas, tx, ty, 0, _scale, _scale)
   end
 end
 

@@ -1,11 +1,11 @@
-teleport = require("entities/teleport")
+local teleport = require("entities/teleport")
 
 teleport {
   x = 9,
-  y = 4,
+  y = 3,
   destination = {
-    x = 2,
-    y = 7,
-    map = "remain",
+    x = 3,
+    y = 13,
+    map = "level_2",
   }
 }

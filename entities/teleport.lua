@@ -24,13 +24,15 @@ function T:update(dt, actor)
   if actor.x == self.x and actor.y == self.y then 
     actor.x = self.destination.x
     actor.y = self.destination.y
-    if self.destination.map ~= map.name or self.destination.map == "remain" then
+    if self.destination.map ~= map.name and self.destination.map ~= "remain" then
       map.load(self.destination.map)
     end
   end
-return T
+end
 
 function T:draw()
   local size = _tileSize * _scale
-  love.graphics.rectangle("line", self.x * size, self.y * size, size, size) 
+  love.graphics.rectangle("line", (self.x - 1) * size, (self.y - 1) * size, size, size) 
 end
+
+return T

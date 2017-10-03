@@ -10,7 +10,7 @@ function love.load ()
 end
 
 function love.update (dt)
-  interactive.update(dt)
+  interactive.update(dt, player)
   player.update(dt)
 end
 

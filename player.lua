@@ -34,9 +34,9 @@ function P.keypressed(key)
 
 end
 
-function P.draw(scale)
-
-  love.graphics.rectangle("fill", (P.x - 1) * _tileSize * scale, (P.y - 1) * _tileSize * scale, _tileSize * scale, _tileSize * scale, 0, 0, 10)
+function P.draw()
+  local size = _tileSize * _scale 
+  love.graphics.rectangle("fill", (P.x - 1) * size, (P.y - 1) * size, size, size) 
 end
 
 return P
