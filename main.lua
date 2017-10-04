@@ -15,9 +15,8 @@ function love.update (dt)
 end
 
 function love.keypressed (key)
-  player.keypressed (key)
+  player.keypressed(key)
 end
-
 
 function love.draw ()
   map.draw(0, 0)
