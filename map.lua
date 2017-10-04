@@ -28,8 +28,7 @@ function Map.load(map_name)
   Map.name = map_name
 
   -- load event layer from map_name.lua file
-  interactive.entities = {}
-  dofile("maps/" .. map_name .. ".lua")
+  interactive.load(map_name)
 
   -- start reading from file
   io.input("maps/" .. map_name .. ".map")

@@ -15,14 +15,6 @@ function love.update (dt)
 end
 
 function love.keypressed (key)
-  if key == "space" then
-    if map.name == "level_1" then 
-      map.load("level_2")
-    else
-      map.load("level_1")
-    end
-  end
-
   player.keypressed (key)
 end
 
