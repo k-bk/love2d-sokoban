@@ -8,8 +8,11 @@ function I.load (map_name)
 end
 
 function I.update (dt, player)
-  for _, entity in pairs(I.entities) do
+  for i, entity in pairs(I.entities) do
     entity:update(dt, player)
+    if entity.delete then
+      table.remove(I.entities, i)
+    end
   end
 end
 

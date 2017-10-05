@@ -21,7 +21,7 @@ function P.update(dt)
 
   if not P.canMove then
     P.stepProgress = P.stepProgress + dt
-    if P.stepProgress > P.stepTime then
+    if P.stepProgress >= P.stepTime then
       P.stepProgress = P.stepProgress - P.stepTime 
       P.canMove = true
     end
