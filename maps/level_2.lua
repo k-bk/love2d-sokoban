@@ -1,5 +1,6 @@
 local teleport = require("entities/teleport")
 local welcome = require("entities/welcome")
+local hud = require("entities/hud")
 
 teleport {
   x = 3,
@@ -25,4 +26,9 @@ welcome {
   message = "Dobranoc. Pchły na noc.",
   time = 3,
   fading = 0.5,
+}
+
+hud {
+  steps = 50,
+  levelName = "Poziom 1",
 }

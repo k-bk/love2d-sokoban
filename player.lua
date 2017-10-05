@@ -59,26 +59,29 @@ function P.input()
       P.dir = 3 
     end
 
+
     local oldx, oldy = P.x, P.y
     if P.lastKey == "horizontal" then
       if Map.checkFlag(P.x + movex, P.y) ~= 1 then 
         P.x = P.x + movex
-        P.canMove = false
       end
       if Map.checkFlag(oldx, P.y + movey) ~= 1 and Map.checkFlag(P.x, P.y + movey) ~= 1 then 
         P.y = P.y + movey
-        P.canMove = false
       end
     else
       if Map.checkFlag(P.x, P.y + movey) ~= 1 then 
         P.y = P.y + movey
-        P.canMove = false
       end
       if Map.checkFlag(P.x + movex, oldy) ~= 1 and Map.checkFlag(P.x + movex, P.y) ~= 1 then 
         P.x = P.x + movex
-        P.canMove = false
       end
     end
+
+    if oldx ~= P.x or oldy ~= P.y then
+      P.canMove = false
+      gameEvents.push(events.playerStep)
+    end
+
   end
 
 end

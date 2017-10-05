@@ -3,6 +3,8 @@ _scale = 0.5
 map = require("map")
 player = require("player")
 interactive = require("interactive") 
+gameEvents = require("gameEvents")
+events = require("events")
 
 function love.load ()
   map.load("level_2")
