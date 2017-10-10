@@ -5,6 +5,7 @@ player = require("player")
 interactive = require("interactive") 
 gameEvents = require("gameEvents")
 events = require("events")
+lume = require("lume/lume")
 
 function love.load ()
   map.load("level_2")

@@ -128,7 +128,7 @@ function Map.readTileset(tileset_name)
   end
 end
 
-function Map.checkFlag(x, y, layer)
+function Map.checkFlag(x, y)
   -- returns the highest flag on x,y coordinate
   
   local maxi = 0
