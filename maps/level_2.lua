@@ -2,6 +2,7 @@ local teleport = require("entities/teleport")
 local welcome = require("entities/welcome")
 local hud = require("entities/hud")
 local movable = require("entities/movable")
+local spikes = require("entities/spikes")
 
 teleport {
   x = 3,
@@ -41,4 +42,9 @@ movable {
 movable {
   x = 12,
   y = 11,
+}
+
+spikes {
+  x = 7,
+  y = 10,
 }

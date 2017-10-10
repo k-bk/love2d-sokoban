@@ -50,14 +50,9 @@ end
 function T:handleCollision(actor, dx, dy) 
   if actor.x + dx == self.x and actor.y + dy == self.y then
     self.stepLength = actor.stepLength
-    self:move(dx, dy)
+    dx, dy = self:move(dx, dy)
   end
-
-  if self.state == states.idle then
-    return 0, 0
-  else
-    return dx, dy
-  end
+  return dx, dy
 end
 
 function T:move(dx, dy)
