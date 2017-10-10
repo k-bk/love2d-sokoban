@@ -1,6 +1,7 @@
 local teleport = require("entities/teleport")
 local welcome = require("entities/welcome")
 local hud = require("entities/hud")
+local movable = require("entities/movable")
 
 teleport {
   x = 3,
@@ -31,4 +32,9 @@ welcome {
 hud {
   steps = 50,
   levelName = "Poziom 1",
+}
+
+movable {
+  x = 11,
+  y = 11,
 }
