@@ -38,3 +38,7 @@ movable {
   x = 11,
   y = 11,
 }
+movable {
+  x = 12,
+  y = 11,
+}

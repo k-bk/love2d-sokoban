@@ -20,6 +20,12 @@ function T.new(init)
   local self = setmetatable(init, T)
   interactive.add(self) 
   self.state = states.idle
+  self.stepProgress = 0
+  self.stepLength = 0.5
+  self.xTo = self.x
+  self.yTo = self.y
+  self.xFrom = self.x
+  self.yFrom = self.y
   return self
 end
     
@@ -28,9 +34,11 @@ function T:update(dt, actor)
   -- if entity is moving, advance its step
   if self.state == states.moving then
     self.stepProgress = self.stepProgress + dt
-    if self.stepProgress >= self.stepTime then
+    if self.stepProgress >= self.stepLength then
       self.x = self.xTo
       self.y = self.yTo
+      self.xFrom = self.x
+      self.yFrom = self.y
       self.stepProgress = 0
       self.state = states.idle
     end
@@ -41,9 +49,15 @@ end
 -- Standard function evoken for every collision = true entity
 function T:handleCollision(actor, dx, dy) 
   if actor.x + dx == self.x and actor.y + dy == self.y then
-    dx, dy = self:move(dx, dy)
+    self.stepLength = actor.stepLength
+    self:move(dx, dy)
   end
-  return dx, dy
+
+  if self.state == states.idle then
+    return 0, 0
+  else
+    return dx, dy
+  end
 end
 
 function T:move(dx, dy)
@@ -53,24 +67,26 @@ function T:move(dx, dy)
     self.yFrom = self.y
 
     if map.checkFlag(self.x + dx, self.y + dy) ~= 1 then
-      local canmove = true
       for _,entity in pairs(interactive.entities) do
         if entity.collision and entity ~= self then
           if entity.x == self.x + dx and entity.y == self.y + dy then
             dx, dy = 0, 0
-            canmove = false
+            self.state = states.idle
             break
           end
         end
       end
 
-      if canmove then
-        self.xTo = self.x + dx
-        self.yTo = self.y + dy
-        self.state = states.moving
-      end
+    -- if collides with static map
+    else
+      dx, dy = 0, 0
     end
   end
+
+  self.xTo = self.x + dx
+  self.yTo = self.y + dy
+  self.xFrom = self.x
+  self.yFrom = self.y
 
   return dx, dy
 end
@@ -78,10 +94,10 @@ end
 
 function T:draw()
   local size = _tileSize * _scale
-  local t = T.stepTrogress / T.stepLength 
-  T.xDraw = lume.lerp(T.xFrom, T.xTo, t) * size
-  T.yDraw = lume.lerp(T.yFrom, T.yTo, t) * size
-  love.graphics.rectangle("line", T.xDraw - size, T.yDraw - size, size, size) 
+  local t = self.stepProgress / self.stepLength 
+  self.xDraw = lume.lerp(self.xFrom, self.xTo, t) * size
+  self.yDraw = lume.lerp(self.yFrom, self.yTo, t) * size
+  love.graphics.rectangle("line", self.xDraw - size, self.yDraw - size, size, size) 
 end
 
 return T

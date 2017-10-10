@@ -72,7 +72,7 @@ function P.collisionCheck(dx, dy)
 
     for _,entity in pairs(interactive.entities) do
       if entity.collision then
-        dx, dy = entity:handleCollision(P)
+        dx, dy = entity:handleCollision(P, dx, dy)
       end
     end
     return dx, dy
