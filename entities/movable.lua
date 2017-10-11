@@ -58,9 +58,6 @@ end
 function T:move(dx, dy)
 
   if dx ~= 0 or dy ~= 0 then
-    self.xFrom = self.x
-    self.yFrom = self.y
-
     if map.checkFlag(self.x + dx, self.y + dy) ~= 1 then
       for _,entity in pairs(interactive.entities) do
         if entity.collision and entity ~= self then
@@ -75,6 +72,7 @@ function T:move(dx, dy)
     -- if collides with static map
     else
       dx, dy = 0, 0
+      self.state = states.idle
     end
   end
 
