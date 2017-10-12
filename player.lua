@@ -78,11 +78,6 @@ function P.collisionCheck(dx, dy)
     return dx, dy
 end
 
-function P.teleport()
-  --P.xDraw = (P.x - 1) * _tileSize
-  --P.yDraw = (P.y - 1) * _tileSize
-end
-
 function P.input()
 
   local movex,movey = 0,0
