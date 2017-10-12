@@ -6,6 +6,7 @@ interactive = require("interactive")
 gameEvents = require("gameEvents")
 events = require("events")
 lume = require("lume/lume")
+screen = require("screen")
 
 function love.load ()
   map.load("level_2")
@@ -15,6 +16,7 @@ end
 function love.update (dt)
   interactive.update(dt, player)
   player.update(dt)
+  screen.update(dt)
 end
 
 function love.keypressed (key)
@@ -25,4 +27,5 @@ function love.draw ()
   map.draw(0, 0)
   interactive.draw()
   player.draw()
+  screen.draw()
 end
