@@ -58,6 +58,7 @@ end
 function T:move(dx, dy)
 
   if dx ~= 0 or dy ~= 0 then
+    self.state = states.moving
     if map.checkFlag(self.x + dx, self.y + dy) ~= 1 then
       for _,entity in pairs(interactive.entities) do
         if entity.collision and entity ~= self then

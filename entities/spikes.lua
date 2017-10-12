@@ -21,7 +21,12 @@ function T.new(init)
   self.state = states.down
   self.timeUp = self.timeUp or 1
   self.timeDown = self.timeDown or 2
+  self.damage = self.damage or 1
   self.timer = 0
+
+  local size = _tileSize * _scale
+  self.xDraw = (self.x - 1) * size
+  self.yDraw = (self.y - 1) * size
   return self
 end
     
@@ -39,6 +44,20 @@ function T:update(dt, actor)
       self.state = states.up
     end
   end
+
+  if self:collisionCheck(actor) then
+    screen.flash("red", 0.3)
+  end
+end
+
+function T:collisionCheck(actor)
+  local size = _tileSize * _scale
+  if actor.xDraw < self.xDraw + size and actor.xDraw + size > self.xDraw then
+    if actor.yDraw < self.yDraw + size and actor.yDraw + size > self.yDraw then
+      return true
+    end
+  end
+  return false
 end
 
 function T:draw()

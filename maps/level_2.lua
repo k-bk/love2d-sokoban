@@ -47,4 +47,7 @@ movable {
 spikes {
   x = 7,
   y = 10,
+  timeUp = 3,
+  timeDown = 2,
+  damage = 2,
 }
