@@ -3,6 +3,19 @@ local welcome = require("entities/welcome")
 local hud = require("entities/hud")
 local movable = require("entities/movable")
 local spikes = require("entities/spikes")
+local weightedButton = require("entities/weightedButton")
+
+weightedButton {
+  x = 3,
+  y = 8,
+  resetTime = 1,
+  doors = {}
+}
+
+movable {
+  x = 4,
+  y = 7,
+}
 
 teleport {
   x = 3,
@@ -47,6 +60,38 @@ movable {
 spikes {
   x = 7,
   y = 10,
+  timeUp = 3,
+  timeDown = 2,
+  damage = 2,
+}
+
+spikes {
+  x = 5,
+  y = 9,
+  timeUp = 3,
+  timeDown = 2,
+  damage = 2,
+}
+
+spikes {
+  x = 5,
+  y = 8,
+  timeUp = 3,
+  timeDown = 2,
+  damage = 2,
+}
+
+spikes {
+  x = 6,
+  y = 8,
+  timeUp = 3,
+  timeDown = 2,
+  damage = 2,
+}
+
+spikes {
+  x = 4,
+  y = 8,
   timeUp = 3,
   timeDown = 2,
   damage = 2,

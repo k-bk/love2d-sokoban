@@ -67,6 +67,8 @@ function T:move(dx, dy)
             self.state = states.idle
             break
           end
+        elseif entity.activeOnWeight then
+          entity:handleCollision(self, dx, dy)
         end
       end
 
@@ -91,7 +93,7 @@ function T:draw()
   local t = self.stepProgress / self.stepLength 
   self.xDraw = lume.lerp(self.xFrom, self.xTo, t) * size
   self.yDraw = lume.lerp(self.yFrom, self.yTo, t) * size
-  love.graphics.rectangle("line", self.xDraw - size, self.yDraw - size, size, size) 
+  love.graphics.rectangle("fill", self.xDraw - size, self.yDraw - size, size, size) 
 end
 
 return T

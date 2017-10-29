@@ -42,18 +42,20 @@ function P.update(dt)
     if P.stepProgress >= P.stepLength then
       P.x = P.xTo
       P.y = P.yTo
+      P.xFrom = P.x
+      P.yFrom = P.y
       P.stepProgress = 0 
       P.state = states.idle
     end
   end
 
   if P.state == states.idle then
-    dx, dy = P.collisionCheck(dx, dy)
-    P.xFrom = P.x
-    P.yFrom = P.y
-    P.xTo = P.x + dx
-    P.yTo = P.y + dy
     if dx ~= 0 or dy ~= 0 then
+      dx, dy = P.collisionCheck(dx, dy)
+      P.xFrom = P.x
+      P.yFrom = P.y
+      P.xTo = P.x + dx
+      P.yTo = P.y + dy
       P.state = states.walking
       P.stepProgress = 0
     end
@@ -71,7 +73,7 @@ function P.collisionCheck(dx, dy)
     end
 
     for _,entity in pairs(interactive.entities) do
-      if entity.collision then
+      if entity.collision or entity.activeOnWeight then
         dx, dy = entity:handleCollision(P, dx, dy)
       end
     end

@@ -25,8 +25,8 @@ function T.new(init)
   self.timer = 0
 
   local size = _tileSize * _scale
-  self.xDraw = (self.x - 1) * size
-  self.yDraw = (self.y - 1) * size
+  self.xDraw = self.x * size
+  self.yDraw = self.y * size
   return self
 end
     
@@ -38,6 +38,9 @@ function T:update(dt, actor)
       self.timer = 0
       self.state = states.down
     end
+    if self:collisionCheck(actor) then
+      screen.flash(255, 0, 100, 100, 0.3)
+    end
   elseif self.state == states.down then
     if self.timer >= self.timeDown then
       self.timer = 0
@@ -45,9 +48,6 @@ function T:update(dt, actor)
     end
   end
 
-  if self:collisionCheck(actor) then
-    screen.flash("red", 0.3)
-  end
 end
 
 function T:collisionCheck(actor)
@@ -63,7 +63,7 @@ end
 function T:draw()
   local size = _tileSize * _scale
   if self.state == states.up then
-    love.graphics.rectangle("line", (self.x - 1) * size, (self.y - 1) * size, size, size) 
+    love.graphics.rectangle("line", self.xDraw - size, self.yDraw - size, size, size) 
   end
 end
 
