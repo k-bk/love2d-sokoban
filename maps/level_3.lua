@@ -37,16 +37,6 @@ teleport {
   }
 }
 
-teleport {
-  x = 10,
-  y = 8,
-  destination = {
-    x = 3,
-    y = 7,
-    map = "level_3",
-  }
-}
-
 welcome {
   message = "Dobranoc. Pchły na noc.",
   time = 3,

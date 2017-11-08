@@ -1,4 +1,4 @@
-_tileSize = 64
+_tileSize = 100
 _scale = 0.5
 map = require("map")
 player = require("player")
@@ -9,8 +9,8 @@ lume = require("lume/lume")
 screen = require("screen")
 
 function love.load ()
-  map.load("level_2")
-  player.load(2,6)
+  map.load("level_3")
+  player.load(3, 7)
 end
 
 function love.update (dt)
