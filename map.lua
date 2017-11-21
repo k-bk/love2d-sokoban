@@ -133,7 +133,7 @@ function Map.checkFlag(x, y)
   
   local maxi = 0
   for _, layer in ipairs(Map.layers) do
-    maxi = math.max(maxi, Map.flags[layer[y][x]])
+    maxi = math.max(maxi, Map.flags[layer[y][x] - 1])
   end
   return maxi
 end
@@ -147,7 +147,7 @@ function Map.updateCanvas(layer)
     for j = 1, Map.width do
       love.graphics.draw(
         Map.tileset.image,
-        Map.tileset[layer[i][j]], 
+        Map.tileset[layer[i][j] - 1], 
         (j - 1) * _tileSize,
         (i - 1) * _tileSize
         )
@@ -156,6 +156,15 @@ function Map.updateCanvas(layer)
 
   -- return to basic canvas
   love.graphics.setCanvas()
+end
+
+function Map.drawSingleTile(x, y, tile)
+  love.graphics.draw(
+    Map.tileset.image,
+    Map.tileset[tile],
+    (x - 1) * _tileSize * _scale,
+    (y - 1) * _tileSize * _scale
+    )
 end
 
 return Map

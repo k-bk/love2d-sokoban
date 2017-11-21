@@ -63,7 +63,9 @@ end
 function T:draw()
   local size = _tileSize * _scale
   if self.state == states.up then
-    love.graphics.rectangle("line", self.xDraw - size, self.yDraw - size, size, size) 
+    map.drawSingleTile(self.x, self.y, 24)
+  else
+    map.drawSingleTile(self.x, self.y, 14)
   end
 end
 
